@@ -3479,7 +3479,7 @@ xerror(Display __attribute__((unused)) *dpy, XErrorEvent *ev) {
 
   o = ev->error_code - ps->xfixes_error;
   switch (o) {
-    CASESTRRET2(BadRegion);
+    case BadRegion: return 0; // happens when closing windows
   }
 
   o = ev->error_code - ps->damage_error;
@@ -3539,7 +3539,7 @@ xerror(Display __attribute__((unused)) *dpy, XErrorEvent *ev) {
     CASESTRRET2(BadPixmap);
     CASESTRRET2(BadRequest);
     CASESTRRET2(BadValue);
-    CASESTRRET2(BadWindow);
+    case BadWindow: return 0; // happens literally all the time
   }
 
 #undef CASESTRRET2
@@ -7163,9 +7163,9 @@ mainloop(session_t *ps) {
       return false;
     }
   }
-
   // Polling
   fds_poll(ps, ptv);
+
   free(ptv);
   ptv = NULL;
 

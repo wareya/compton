@@ -497,6 +497,10 @@ typedef struct {
   GLint unifm_invert_color;
   /// Location of uniform "tex" in window GLSL program.
   GLint unifm_tex;
+  /// Height of window
+  GLfloat unifm_h;
+  /// Width of window
+  GLfloat unifm_w;
 } glx_prog_main_t;
 
 #define GLX_PROG_MAIN_INIT { \

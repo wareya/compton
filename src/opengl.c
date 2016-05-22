@@ -563,6 +563,8 @@ glx_load_prog_main(session_t *ps,
   P_GET_UNIFM_LOC("opacity", unifm_opacity);
   P_GET_UNIFM_LOC("invert_color", unifm_invert_color);
   P_GET_UNIFM_LOC("tex", unifm_tex);
+  P_GET_UNIFM_LOC("h", unifm_h);
+  P_GET_UNIFM_LOC("w", unifm_w);
 #undef P_GET_UNIFM_LOC
 
   glx_check_err(ps);
@@ -1563,6 +1565,10 @@ glx_render_(session_t *ps, const glx_texture_t *ptex,
       glUniform1i(pprogram->unifm_invert_color, neg);
     if (pprogram->unifm_tex >= 0)
       glUniform1i(pprogram->unifm_tex, 0);
+    if (pprogram->unifm_h >= 0)
+      glUniform1i(pprogram->unifm_h, height);
+    if (pprogram->unifm_w >= 0)
+      glUniform1i(pprogram->unifm_w, width);
   }
 #endif
 
